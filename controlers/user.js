@@ -10,7 +10,7 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 
 const getUsers = async (req, res, next) => {
     try {
-        const users = await User.findOne({});
+        const users = await User.findOne(req.user._id);
         res.send(users);
     } catch (err) {
         next(err);

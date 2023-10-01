@@ -5,7 +5,7 @@ const BadRequestError = require("../errors/BadRequestError");
 
 const getMovies = async (req, res, next) => {
     try {
-        const movie = await Movie.find({});
+        const movie = await Movie.find(req.user._id);
         res.send(movie);
     } catch (err) {
         next(err);
