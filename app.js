@@ -1,5 +1,7 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const handleError = require("./middleware/handleError");
 
@@ -15,6 +17,7 @@ mongoose.connect(DB_URL, {
 });
 
 app.use(express.json());
+app.use(cookieParser());
 app.use(cors());
 app.use(router);
 app.use(handleError);
