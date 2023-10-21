@@ -3,7 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
-const cors = require("cors");
+const corsHandler = require("./middleware/corsHandler");
 const limiter = require("./middleware/limiter");
 const handleError = require("./middleware/handleError");
 
@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(helmet());
 app.use(limiter);
-app.use(cors());
+app.use(corsHandler);
 app.use(router);
 app.use(handleError);
 app.listen(PORT);
