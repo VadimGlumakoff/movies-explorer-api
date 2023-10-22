@@ -76,6 +76,7 @@ const login = async (req, res, next) => {
             httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000,
             sameSite: "None",
+            secure: true,
         };
         res.cookie("jwtToken", token, cookieOption);
         res.send({ message: "Успешно вошли" });
