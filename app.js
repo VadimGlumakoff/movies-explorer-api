@@ -26,3 +26,8 @@ app.use(corsHandler);
 app.use(router);
 app.use(handleError);
 app.listen(PORT);
+
+app.get("/", (req, res) => {
+    res.cookie("name", "value", { secure: true });
+    res.send("Hello World!");
+});
