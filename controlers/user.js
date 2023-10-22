@@ -42,14 +42,13 @@ const createUser = async (req, res, next) => {
         const hashPassword = await bcrypt.hash(password, 10);
         const user = await User.create({ email, password: hashPassword, name });
         res.status(201).send({
-            email, name: user.name,
+            email,
+            name: user.name,
         });
     } catch (err) {
         if (err.name === "ValidationError") {
             next(new BadRequestError("Невалидные данные"));
-        } else
-
-        if (err.code === 11000) {
+        } else if (err.code === 11000) {
             next(new ConflictError("Пользователь с таким email уже существует"));
         }
         next(err);
@@ -76,6 +75,7 @@ const login = async (req, res, next) => {
         const cookieOption = {
             httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000,
+            SameSite: "None",
         };
         res.cookie("jwtToken", token, cookieOption);
         res.send({ message: "Успешно вошли" });
@@ -93,5 +93,9 @@ const logout = async (req, res, next) => {
 };
 
 module.exports = {
-    getUsers, updateUser, createUser, login, logout,
+    getUsers,
+    updateUser,
+    createUser,
+    login,
+    logout,
 };
