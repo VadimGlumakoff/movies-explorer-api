@@ -12,7 +12,7 @@ const router = require("./routes/index");
 
 const { PORT = 3000, DB_URL, NODE_ENV } = process.env;
 
-mongoose.connect(NODE_ENV === "production" ? DB_URL : "mongodb://127.0.0.1/bitfilmsdb", {
+mongoose.connect(NODE_ENV === "production" ? DB_URL : "mongodb://localhost:127.0.0.1/bitfilmsdb", {
     family: 4,
     useNewUrlParser: true,
     useUnifiedTopology: true,
