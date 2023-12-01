@@ -75,7 +75,7 @@ const login = async (req, res, next) => {
         const cookieOption = {
             httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000,
-            sameSite: "none",
+            sameSite: "None",
             secure: true,
         };
         res.cookie("jwt", token, cookieOption);
