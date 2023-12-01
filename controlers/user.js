@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { restart } = require("nodemon");
 const AuthError = require("../errors/AuthError");
 const User = require("../models/user");
 const BadRequestError = require("../errors/BadRequestError");
@@ -87,6 +88,7 @@ const login = async (req, res, next) => {
 
 const logout = async (req, res, next) => {
     try {
+        console.log(res);
         res.clearCookie("jwtToken").send({ message: "Успешно вышли" });
     } catch (err) {
         next(err);
