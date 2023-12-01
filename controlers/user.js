@@ -87,10 +87,10 @@ const login = async (req, res, next) => {
 
 const logout = async (req, res, next) => {
     try {
-        res.cookie("jwt", "", {
-            domain: "https://glumakoffdiplomfront.nomoredomainsmonster.ru",
-            maxAge: 0,
-            overwrite: true,
+        res.clearCookie("jwt", {
+            httpOnly: true,
+            sameSite: "none",
+            secure: true,
         });
         // res.clearCookie("jwt").send({ message: "Успешно вышли" });
         // res.end();
