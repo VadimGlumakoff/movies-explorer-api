@@ -88,6 +88,7 @@ const login = async (req, res, next) => {
 const logout = async (req, res, next) => {
     try {
         res.clearCookie("jwt").send({ message: "Успешно вышли" });
+        res.end();
     } catch (err) {
         next(err);
     }
