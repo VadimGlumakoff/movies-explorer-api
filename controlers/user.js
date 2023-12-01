@@ -72,13 +72,19 @@ const login = async (req, res, next) => {
             { expiresIn: "7d" },
         );
 
-        const cookieOption = {
+        // const cookieOption = {
+        //     httpOnly: true,
+        //     maxAge: 24 * 60 * 60 * 1000,
+        //     sameSite: "None",
+        //     secure: true,
+        // };
+        // res.cookie("jwt", token, cookieOption);
+        res.cookie("jwt", token, {
             httpOnly: true,
-            maxAge: 24 * 60 * 60 * 1000,
             sameSite: "None",
             secure: true,
-        };
-        res.cookie("jwt", token, cookieOption);
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+        });
         res.send({ message: "Успешно вошли" });
     } catch (err) {
         next(err);
@@ -87,8 +93,13 @@ const login = async (req, res, next) => {
 
 const logout = async (req, res, next) => {
     try {
-        res.clearCookie("jwt").send({ message: "Успешно вышли" });
-        res.end();
+        res
+            .clearCookie("jwt", {
+                httpOnly: true,
+                sameSite: "None",
+                secure: true,
+            })
+            .send({ message: "Кука успешно удалена." });
     } catch (err) {
         next(err);
     }
