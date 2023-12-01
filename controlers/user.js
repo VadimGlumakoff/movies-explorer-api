@@ -87,7 +87,7 @@ const login = async (req, res, next) => {
 
 const logout = async (req, res, next) => {
     try {
-        res.cookies.set("testtoken", { expires: Date.now() }).send({ message: "Успешно вышли" });
+        res.cookies.set("jwt", { maxAge: 0 }).send({ message: "Успешно вышли" });
         res.end();
     } catch (err) {
         next(err);
