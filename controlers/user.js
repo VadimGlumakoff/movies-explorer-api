@@ -1,6 +1,5 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { restart } = require("nodemon");
 const AuthError = require("../errors/AuthError");
 const User = require("../models/user");
 const BadRequestError = require("../errors/BadRequestError");
